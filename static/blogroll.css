@@ -1,0 +1,28 @@
+#wrapper {
+    margin-left: 0;
+}
+
+#outer-wrapper {
+    display: flex;
+}
+
+.blogroll {
+    margin-top: 10px;
+    margin-left: auto;
+    width: 250px;
+    padding-left: 10px;
+}
+
+.blogroll-title {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+    #wrapper {
+	margin-left: auto;
+    }
+
+    .blogroll {
+	display: none;
+    }
+}

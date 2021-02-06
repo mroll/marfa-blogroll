@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  {{ partial "head.html" . }}
+  <body>
+    {{ partial "header.html" . }}
+    <div id="outer-wrapper">
+      {{ if .IsHome }}
+      <div class="blogroll">
+	<h3 class="blogroll-title">Blogroll</h3>
+	<ul id="blogroll-list"></ul>
+      </div>
+      {{ end }}
+      <section id="wrapper" 
+	       {{ if eq .File.Dir "about/" }} class="bio" {{ end }}
+
+	<!--
+	     When the blogroll is rendered on the homepage,
+	     the margin is supplied by the blogroll and not
+	     the post list
+	-->
+	       {{ if eq .IsHome false }} style="margin-left: auto;" {{ end }}
+      >
+
+	{{ block "main" . }}{{ end }}
+      </section>
+    </div>
+    {{ partial "footer.html" . }}
+    {{ partial "custom_footer.html" . }}
+
+    <script>
+     var blogrollItems = [
+       {
+	 name: "Astral Codex Ten",
+	 url: "https://astralcodexten.substack.com"
+       }
+     ]
+
+     var blogrollList = document.getElementById('blogroll-list')
+
+     blogrollItems.forEach(function (blogrollItem) {
+       var listItem = document.createElement('li')
+       var listItemAnchor = document.createElement('a')
+
+       listItemAnchor.innerText = blogrollItem.name
+       listItemAnchor.href      = blogrollItem.url
+
+       listItem.appendChild(listItemAnchor)
+       blogrollList.appendChild(listItem)
+     })
+    </script>
+  </body>
+</html>
